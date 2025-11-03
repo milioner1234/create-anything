@@ -1,0 +1,21 @@
+# Netlify configuration for the React Router + Vite + Hono project
+
+[build]
+  command = "npm run build"
+  publish = "build/client"
+  base = "apps/web"
+
+[functions]
+  directory = "build/server"
+  node_bundler = "esbuild"
+
+# Redirect all routes to your SPA or SSR handler
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Optional environment setup (recommended)
+[build.environment]
+  NODE_VERSION = "20"
+  NPM_FLAGS = "--legacy-peer-deps"
